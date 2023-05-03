@@ -24,7 +24,7 @@ const Header = () => {
                     </div>
                     <div className='text-center mt-md-0 mt-2'>
                         <button className='btn btn-success btn-sm'><Link className='text-decoration-none text-white' to='/login'>Login</Link></button>
-                        <button className='btn btn-success btn-sm'><Link className='text-decoration-none text-white' to="/logout">Logout</Link></button>
+                        <button className='btn btn-success btn-sm'>Logout</button>
                     </div>
                 </Navbar.Collapse>
             </Container>
