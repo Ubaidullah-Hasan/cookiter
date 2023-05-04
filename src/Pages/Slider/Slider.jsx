@@ -10,7 +10,7 @@ const Slider = () => {
     return (
         <div className='slider-cus'>
             <Carousel>
-                <Carousel.Item interval={10000} className='text-position'>
+                <Carousel.Item interval={2000} className='text-position'>
                     <img
                         className="d-block w-100 slider-img"
                         src={banner2}
@@ -26,7 +26,7 @@ const Slider = () => {
                         <p className="subtitle d-none d-md-block text-white bg-dark bg-opacity-25 mx-auto">Bacon ipsum dolor amet ball tip pork chop cow tenderloin andouille. Pastrami pork picanha tongue venison strip steak</p>
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item interval={10000}>
+                <Carousel.Item interval={2000}>
                     <img
                         className="d-block w-100 slider-img"
                         src={banner1}
@@ -42,7 +42,7 @@ const Slider = () => {
                         <p className="subtitle  d-none d-md-block text-white mx-auto d-none d-md-block">Bacon ipsum dolor amet ball tip pork chop cow tenderloin andouille. Pastrami pork picanha tongue venison strip steak</p>
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item interval={10000}>
+                <Carousel.Item interval={2000}>
                     <img
                         className="d-block w-100 slider-img"
                         src={banner3}

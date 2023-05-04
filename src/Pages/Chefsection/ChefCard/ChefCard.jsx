@@ -3,6 +3,7 @@ import { Button, Card, Col } from 'react-bootstrap';
 import { FaCheckCircle, FaHeart, FaHeartbeat, FaLocationArrow } from "react-icons/fa";
 import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css';
+import { Link } from 'react-router-dom';
 
 
 
@@ -27,7 +28,7 @@ const ChefCard = ({ chef }) => {
                     <div>
                         <FaHeart className='text-danger fw-bold'></FaHeart> <span className='fw-semibold ms-1 '>{likes}</span>
                     </div>
-                    <Button variant="success" className='rounded-sm shadow'>Recipes <FaLocationArrow className='ms-1' /></Button>
+                    <Button variant="success" className='rounded-sm shadow'><Link to="/recipes" className='text-white text-decoration-none'>View Recipes <FaLocationArrow className='ms-1' /> </Link></Button>
                 </Card.Footer>
             </Card>
         </Col>

@@ -1,0 +1,14 @@
+.card-recipies{
+    background-position: left left;
+    background-size: cover;
+    position: relative;
+    height: 350px;
+    border-radius: 10px;
+}
+
+.card-recipies1 {
+    background-image: url("../../../assets/barry.jpg");
+}
+.card-recipies2 {
+    background-image: url("../../../assets/orange.jpg");
+}

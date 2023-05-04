@@ -8,6 +8,7 @@ import About from "../Pages/About/About";
 import Register from "../Pages/User/Register/Register";
 import Login from "../Pages/User/Login/Login";
 import ChefSection from "../Pages/Chefsection/ChefSection/ChefSection";
+import Recipes from "../Pages/Recipes/Recipes";
 
 const router = createBrowserRouter([
     {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
             {
                 path: "/chefs",
                 element: <ChefSection></ChefSection>,
+            },
+            {
+                path: '/recipes',
+                element: <Recipes></Recipes>
             }
         ]
     },
