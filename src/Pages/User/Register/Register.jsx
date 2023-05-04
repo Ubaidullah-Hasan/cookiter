@@ -5,8 +5,8 @@ import "./Register.css";
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 const Register = () => {
-    const { user } = useContext(AuthContext);
-    console.log(user);
+    const { createAccount } = useContext(AuthContext);
+    const [error, setError] = useState('')
 
     // form value
     const handleForm = (event) => {
@@ -17,7 +17,19 @@ const Register = () => {
         const password = form.password.value;
         const photoUrl = form.photo.value;
         console.log(name, email, password, photoUrl);
+        createAccount(email, password)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+            form.reset();
+        })
+        .catch(error => {
+            setError(error.message);
+        })
     }
+
+
+
 
     // Chacked box handle
     const [check, setCheck] = useState(false);
@@ -54,6 +66,10 @@ const Register = () => {
                     <Form.Group controlId="formBasicCheckbox" onClick={handleChecked} className="mt-3">
                         <Form.Check type="checkbox" label={<>Accept {<Link to='/terms'>terms and condition</Link>}</>} />
                     </Form.Group>
+
+                    {
+                        error && <p className='bg-danger bg-opacity-10 p-3 mt-3'>{error}</p>
+                    }
 
                     <Button variant="success" type="submit" className='mt-3' disabled={!check} >
                         Register
