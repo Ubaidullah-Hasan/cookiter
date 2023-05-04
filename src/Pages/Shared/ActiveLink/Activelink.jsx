@@ -6,7 +6,7 @@ const Activelink = ({ to, children }) => {
         <NavLink
             to={to}
             className={({ isActive }) =>
-                isActive ? "active text-decoration-none" : "text-decoration-none mx-md-3 my-1 my-md-0 text-dark text-center"
+                isActive ? "active text-decoration-none" : "text-decoration-none mx-md-3 my-1 my-md-0 text-dark hover-link"
             }
         >
             {children}
