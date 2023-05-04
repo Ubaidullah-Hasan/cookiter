@@ -18,7 +18,7 @@ const Slider = () => {
                     />
                     <Carousel.Caption>
                         <h1 className="title text-white ">
-                            Learn The
+                            Your Skills
                             <span className="text-success"> Art</span><br />
                             Of Cooking Here
                         </h1>
@@ -50,7 +50,7 @@ const Slider = () => {
                     />
                     <Carousel.Caption>
                         <h1 className="title text-white ">
-                            Learn The
+                            Cooking 
                             <span className="text-success"> Art</span><br />
                             Of Cooking Here
                         </h1>
