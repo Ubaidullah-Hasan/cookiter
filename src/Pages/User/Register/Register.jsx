@@ -5,7 +5,7 @@ import "./Register.css";
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 const Register = () => {
-    const { createAccount } = useContext(AuthContext);
+    const { createAccount, createUserByGoogle } = useContext(AuthContext);
     const [error, setError] = useState('')
 
     // form value
@@ -18,10 +18,23 @@ const Register = () => {
         const photoUrl = form.photo.value;
         console.log(name, email, password, photoUrl);
         createAccount(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                form.reset();
+                setError('');
+            })
+            .catch(error => {
+                setError(error.message);
+            })
+    }
+
+    // create user by google
+    const handleGoogle = () => {
+        createUserByGoogle()
         .then(result => {
-            const user = result.user;
-            console.log(user);
-            form.reset();
+            console.log(result.user);
+            setError('')
         })
         .catch(error => {
             setError(error.message);
@@ -71,9 +84,18 @@ const Register = () => {
                         error && <p className='bg-danger bg-opacity-10 p-3 mt-3'>{error}</p>
                     }
 
-                    <Button variant="success" type="submit" className='mt-3' disabled={!check} >
+                    <Button variant="success" type="submit" className='mt-3 w-100' disabled={!check} >
                         Register
                     </Button>
+                    <div className='text-center'>
+                        <Button variant="primary" onClick={handleGoogle} className='mt-3 me-3' >
+                            Google
+                        </Button>
+                        <Button variant="dark" className='mt-3' >
+                            Github
+                        </Button>
+                    </div>
+
                     <p className='m-0 mt-3'>Already have an account? <Link to="/login">Login</Link></p>
                 </Form>
             </div>
