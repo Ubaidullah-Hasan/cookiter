@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import logo from "../../../assets/logo.png";
-import user from "../../../assets/usericon_img.png";
+import userimg from "../../../assets/usericon_img.png";
 import Activelink from '../ActiveLink/Activelink';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import toast, { Toaster } from 'react-hot-toast';
+
 
 const Header = () => {
+    const { user, logedOut } = useContext(AuthContext);
+
+    // signout 
+    const signout = () => {
+        logedOut()
+            .then(() => {
+                toast.success('Successfully Signout!')
+                console.log("successfully logout")
+            })
+            .catch(error => {
+                toast(error.message);
+            })
+    }
     return (<>
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
             <Container>
@@ -19,12 +35,20 @@ const Header = () => {
                         <Activelink to="/blog">Blog</Activelink>
                         <Activelink to="/about">About</Activelink>
                     </Nav>
-                    <div className='text-center mt-md-0 mt-3 me-md-3'>
-                        <img src={user} alt="img" className='img-fluid rounded-circle' style={{width:"30px", height:"30px"}} />
-                    </div>
+                    {
+                        user &&
+                        <div className='text-center mt-md-0 mt-3 me-md-3'>
+                            <img src={userimg} alt="img" className='img-fluid rounded-circle' style={{ width: "30px", height: "30px" }} />
+                        </div>
+                    }
+                    <Toaster />
                     <div className='text-center mt-md-0 mt-2'>
-                        <button className='btn btn-success btn-sm'><Link className='text-decoration-none text-white' to='/login'>Login</Link></button>
-                        <button className='btn btn-success btn-sm'>Logout</button>
+                        {
+                            user ?
+                                <button className='btn btn-success btn-sm' onClick={signout}>Logout</button>
+                                :
+                                <button className='btn btn-success btn-sm'><Link className='text-decoration-none text-white' to='/login'>Login</Link></button>
+                        }
                     </div>
                 </Navbar.Collapse>
             </Container>

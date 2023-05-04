@@ -1,5 +1,5 @@
-import React, { Children, createContext, useState } from 'react';
-import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithPopup } from "firebase/auth";
+import React, { Children, createContext, useEffect, useState } from 'react';
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import app from '../firebase/firebase.config';
 
 
@@ -22,12 +22,31 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, githubProvider);
     }
 
+    // Login using email
+    const loginByemail = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password)
+    }
+
+    // signOut 
+    const logedOut = () => {
+        return signOut(auth);
+    }
+
+    // use state check
     const [user, setUser] = useState('alamin')
+    useEffect(()=>{
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser)
+        })
+        return () => unsubscribe;
+    },[]);
 
     const authInfo = {
         createAccount,
         createUserByGoogle,
         createUserByGitHub,
+        loginByemail,
+        logedOut,
         user,
     }
     return (
