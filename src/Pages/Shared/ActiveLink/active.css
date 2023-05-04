@@ -1,6 +1,6 @@
 .active{
     color: #85B72C;
 }
-a:hover{
+.hover-link:hover{
     color: rgb(20, 20, 20) !important;
 }

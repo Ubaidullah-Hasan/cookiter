@@ -1,0 +1,14 @@
+.cus-tooltip {
+    background-color: rgba(64, 72, 79, 0.624);
+    left: -52px;
+    bottom: -80px;
+    color: white;
+    text-transform: uppercase;
+}
+
+@media only screen and (max-width: 700px) {
+    .cus-tooltip {
+        left: 104px;
+        bottom: 19px;
+    }
+}

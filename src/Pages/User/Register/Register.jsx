@@ -3,9 +3,10 @@ import { Button, Container, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import "./Register.css";
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import { Toaster, toast } from 'react-hot-toast';
 
 const Register = () => {
-    const { createAccount, createUserByGoogle, createUserByGitHub } = useContext(AuthContext);
+    const { createAccount, createUserByGoogle, createUserByGitHub, userProfile } = useContext(AuthContext);
     const [error, setError] = useState('')
 
     // form value
@@ -20,9 +21,11 @@ const Register = () => {
         createAccount(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
                 form.reset();
                 setError('');
+                userProfile(name, photoUrl);
+                console.log(user);
+                toast.success('Successfully create user!')
             })
             .catch(error => {
                 setError(error.message);
@@ -74,12 +77,12 @@ const Register = () => {
 
                     <Form.Group controlId="formBasicEmail" className='mt-3'>
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control name='email' type="email" placeholder="Enter email" />
+                        <Form.Control name='email' required type="email" placeholder="Enter email" />
                     </Form.Group>
 
                     <Form.Group controlId="formBasicPassword" className='mt-3'>
                         <Form.Label>Password</Form.Label>
-                        <Form.Control name='password' type="password" placeholder="Password" />
+                        <Form.Control name='password' required type="password" placeholder="Password" />
                     </Form.Group>
 
                     <Form.Group controlId="formBasicPhoto" className='mt-3'>
@@ -95,6 +98,7 @@ const Register = () => {
                         error && <p className='bg-danger bg-opacity-10 p-3 mt-3'>{error}</p>
                     }
 
+                    <Toaster />
                     <Button variant="success" type="submit" className='mt-3 w-100' disabled={!check} >
                         Register
                     </Button>

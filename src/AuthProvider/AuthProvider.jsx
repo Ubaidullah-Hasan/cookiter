@@ -1,5 +1,5 @@
 import React, { Children, createContext, useEffect, useState } from 'react';
-import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from '../firebase/firebase.config';
 
 
@@ -32,6 +32,13 @@ const AuthProvider = ({ children }) => {
         return signOut(auth);
     }
 
+    // update profile
+    const userProfile = (name, photo) => {
+        return updateProfile(auth.currentUser, {
+            displayName: name, photoURL: photo
+        })
+    }
+
     // use state check
     const [user, setUser] = useState('alamin')
     useEffect(()=>{
@@ -47,6 +54,7 @@ const AuthProvider = ({ children }) => {
         createUserByGitHub,
         loginByemail,
         logedOut,
+        userProfile,
         user,
     }
     return (

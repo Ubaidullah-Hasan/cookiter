@@ -25,24 +25,24 @@ const Login = () => {
     }
     return (
         <Container>
-            <div className='width-50 border p-5 shadow-lg flex mx-auto mt-5'>
+            <div className='width-50 border p-5 shadow-lg flex mx-auto my-5'>
                 <Form onSubmit={handleForm}>
                     <h2 className='text-center mb-4'>Login</h2>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control name='email' type="email" placeholder="Enter email" />
+                        <Form.Control name='email' required type="email" placeholder="Enter email" />
                     </Form.Group>
 
                     <Form.Group controlId="formBasicPassword" className='mt-3'>
                         <Form.Label>Password</Form.Label>
-                        <Form.Control name='password' type="password" placeholder="Password" />
+                        <Form.Control name='password' required type="password" placeholder="Password" />
                     </Form.Group>
 
                     {
                         error && <p className='bg-danger bg-opacity-10 p-3 mt-3'>{error}</p>
                     }
-                    
-                    <Button variant="success" type="submit" className='mt-3 ' >
+
+                    <Button variant="success" type="submit" className='mt-3 text-white' >
                         Submit
                     </Button>
                     <p className='m-0 mt-3'>I have no account? <Link to="/register">Register</Link></p>
