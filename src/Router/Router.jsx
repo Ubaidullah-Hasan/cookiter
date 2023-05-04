@@ -7,13 +7,14 @@ import Home from "../Pages/Home/Home";
 import About from "../Pages/About/About";
 import Register from "../Pages/User/Register/Register";
 import Login from "../Pages/User/Login/Login";
-import ChefSection from "../Pages/Chefsection/ChefSection/ChefSection";
 import Recipes from "../Pages/Recipes/Recipes";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: "/",
@@ -37,12 +38,9 @@ const router = createBrowserRouter([
                 element: <Login></Login>
             },
             {
-                path: "/chefs",
-                element: <ChefSection></ChefSection>,
-            },
-            {
-                path: '/recipes',
-                element: <Recipes></Recipes>
+                path: '/recipes/:id',
+                element: <Recipes></Recipes>,
+                loader: ({ params }) => fetch(`http://localhost:3000/chefs/${params.id}`)
             }
         ]
     },

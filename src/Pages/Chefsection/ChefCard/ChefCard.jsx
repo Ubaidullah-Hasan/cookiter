@@ -10,7 +10,8 @@ import { Link } from 'react-router-dom';
 const ChefCard = ({ chef }) => {
     console.log(chef);
     const { chefPicture, chefName, id, likes, numberOfRecipes, yearsOfExperience, bio } = chef;
-    console.log(likes)
+
+    
     return (
         <Col xs={12} md={6} lg={4} >
             <Card>
@@ -28,7 +29,7 @@ const ChefCard = ({ chef }) => {
                     <div>
                         <FaHeart className='text-danger fw-bold'></FaHeart> <span className='fw-semibold ms-1 '>{likes}</span>
                     </div>
-                    <Button variant="success" className='rounded-sm shadow'><Link to="/recipes" className='text-white text-decoration-none'>View Recipes <FaLocationArrow className='ms-1' /> </Link></Button>
+                    <Button variant="success" className='rounded-sm shadow'><Link to={`/recipes/${id}`} className='text-white text-decoration-none'>View Recipes <FaLocationArrow className='ms-1' /> </Link></Button>
                 </Card.Footer>
             </Card>
         </Col>
