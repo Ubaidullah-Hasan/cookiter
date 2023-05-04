@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 const Login = () => {
-    const { loginByemail } = useContext(AuthContext);
+    const { loginByemail, createUserByGoogle, createUserByGitHub } = useContext(AuthContext);
     const [error, setError] = useState('');
 
     const handleForm = (event) => {
@@ -23,6 +23,31 @@ const Login = () => {
                 setError(err.message);
             })
     }
+
+    // create user by google
+    const handleGoogle = () => {
+        createUserByGoogle()
+            .then(result => {
+                console.log(result.user);
+                setError('')
+            })
+            .catch(error => {
+                setError(error.message);
+            })
+    }
+
+    // create user by GitHub
+    const handleGithub = () => {
+        createUserByGitHub()
+            .then(result => {
+                console.log(result.user);
+                setError('')
+            })
+            .catch(error => {
+                setError(error.message);
+            })
+    }
+    
     return (
         <Container>
             <div className='width-50 border p-5 shadow-lg flex mx-auto my-5'>
@@ -42,9 +67,17 @@ const Login = () => {
                         error && <p className='bg-danger bg-opacity-10 p-3 mt-3'>{error}</p>
                     }
 
-                    <Button variant="success" type="submit" className='mt-3 text-white' >
-                        Submit
+                    <Button variant="success" type="submit" className='mt-3 text-white w-100' >
+                        Login
                     </Button>
+                    <div className='text-center'>
+                        <Button variant="primary" onClick={handleGoogle} className='mt-3 me-3' >
+                            Google
+                        </Button>
+                        <Button variant="dark" onClick={handleGithub} className='mt-3' >
+                            Github
+                        </Button>
+                    </div>
                     <p className='m-0 mt-3'>I have no account? <Link to="/register">Register</Link></p>
                 </Form>
             </div>
