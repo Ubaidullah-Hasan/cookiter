@@ -5,7 +5,7 @@ import "./Register.css";
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 const Register = () => {
-    const { createAccount, createUserByGoogle } = useContext(AuthContext);
+    const { createAccount, createUserByGoogle, createUserByGitHub } = useContext(AuthContext);
     const [error, setError] = useState('')
 
     // form value
@@ -41,6 +41,17 @@ const Register = () => {
         })
     }
 
+    // create user by GitHub
+    const handleGithub = () => {
+        createUserByGitHub()
+        .then(result => {
+            console.log(result.user);
+            setError('')
+        })
+        .catch(error => {
+            setError(error.message);
+        })
+    }
 
 
 
@@ -91,7 +102,7 @@ const Register = () => {
                         <Button variant="primary" onClick={handleGoogle} className='mt-3 me-3' >
                             Google
                         </Button>
-                        <Button variant="dark" className='mt-3' >
+                        <Button variant="dark" onClick={handleGithub} className='mt-3' >
                             Github
                         </Button>
                     </div>

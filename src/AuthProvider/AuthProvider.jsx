@@ -1,5 +1,5 @@
 import React, { Children, createContext, useState } from 'react';
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithPopup } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithPopup } from "firebase/auth";
 import app from '../firebase/firebase.config';
 
 
@@ -16,12 +16,18 @@ const AuthProvider = ({ children }) => {
     const createUserByGoogle = () => {
         return signInWithPopup(auth, provider);
     }
+    // create account using GitHub
+    const githubProvider = new GithubAuthProvider();
+    const createUserByGitHub = () => {
+        return signInWithPopup(auth, githubProvider);
+    }
 
     const [user, setUser] = useState('alamin')
 
     const authInfo = {
         createAccount,
         createUserByGoogle,
+        createUserByGitHub,
         user,
     }
     return (
