@@ -1,6 +1,5 @@
 # COOKITERE-CLIENT-SITE
 ## About This Project
----
 1. This is a chef recipies resturent project. 
 2. Here you will find the **best Chef** and **recipies**. 
 3. It's looks like very **gorgeous**
@@ -15,7 +14,6 @@
    * REACT ICON
 
 ## Live Application URL
----
 ### **https://cookiter-client-site.web.app/** You can **[Visit Site](https://cookiter-client-site.web.app/)** here.
 This URL has the application deployed in
 
