@@ -2,9 +2,15 @@
     font-size: 80px;
 
 }
+.error-page {
+    width: 50%;
+}
 
 @media only screen and (max-width: 700px) {
     .err-title {
         font-size: 40px;
+    }
+    .error-page{
+        width: 100%;
     }
 }
