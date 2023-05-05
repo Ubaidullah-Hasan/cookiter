@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Image, Card } from 'react-bootstrap';
+import aboutImg from "../../assets/about.jpg"
 
 const About = () => {
     return (
@@ -8,7 +9,7 @@ const About = () => {
                 <Col md={8}>
                     <h1 className='text-center bg-success text-white py-2 py-md-3'>About Us</h1>
                     <Card className='mb-3'>
-                        <Image src="/src/assets/about.jpg" alt="About Us" fluid />
+                        <Image src={aboutImg} alt="About Us" fluid />
                         <Card.Body>
                             <Card.Title>Our Story</Card.Title>
                             <Card.Text>
