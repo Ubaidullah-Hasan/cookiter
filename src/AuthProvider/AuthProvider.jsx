@@ -1,4 +1,4 @@
-import React, { Children, createContext, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import app from '../firebase/firebase.config';
 
@@ -40,10 +40,12 @@ const AuthProvider = ({ children }) => {
     }
 
     // use state check
+    const [loading, setLoading] = useState(true);
     const [user, setUser] = useState('alamin')
     useEffect(()=>{
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
+            setLoading(false);
         })
         return () => unsubscribe;
     },[]);
@@ -55,6 +57,7 @@ const AuthProvider = ({ children }) => {
         loginByemail,
         logedOut,
         userProfile,
+        loading,
         user,
     }
     return (

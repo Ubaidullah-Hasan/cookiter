@@ -9,6 +9,7 @@ import Register from "../Pages/User/Register/Register";
 import Login from "../Pages/User/Login/Login";
 import Recipes from "../Pages/Recipes/Recipes";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import PrivateRoute from "../Pages/PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home></Home>,
-                loader: () => fetch("http://localhost:3000/chefs")
+                loader: () => fetch("https://cookiter-server-ubaidullah-hasan.vercel.app/chefs")
             },
             {
                 path: "/blog",
@@ -39,8 +40,8 @@ const router = createBrowserRouter([
             },
             {
                 path: '/recipes/:id',
-                element: <Recipes></Recipes>,
-                loader: ({ params }) => fetch(`http://localhost:3000/chefs/${params.id}`)
+                element: <PrivateRoute><Recipes></Recipes></PrivateRoute>,
+                loader: ({ params }) => fetch(`https://cookiter-server-ubaidullah-hasan.vercel.app/chefs/${params.id}`)
             }
         ]
     },

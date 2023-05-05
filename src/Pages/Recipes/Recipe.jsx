@@ -6,7 +6,7 @@ import { Toaster, toast } from 'react-hot-toast';
 
 
 const Recipe = ({ chef }) => {
-    console.log(chef)
+    
     const { image, name, rating, cooking_method } = chef;
 
     const [love, setLove] = useState(false);
@@ -21,7 +21,7 @@ const Recipe = ({ chef }) => {
                 <Card.Img variant="top" src={image} className='img-fluid' />
                 <Card.Body>
                     <div>
-                        <button className='btn border-danger text-danger btn-sm my-3 ' style={{ cursor: "initial"}}>{cooking_method}</button>
+                        <button className='btn border-danger text-danger btn-sm my-3 ' style={{ cursor: "initial" }}>{cooking_method}</button>
                         <Card.Title className='mb-2 pb-2'>{name}</Card.Title>
                     </div>
                 </Card.Body>

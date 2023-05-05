@@ -6,8 +6,10 @@ import Slider from '../Slider/Slider';
 import Testemonial from '../Shared/Testimonial/Testemonial';
 import RecipiesCard from '../Shared/RecipiesCard/RecipiesCard';
 
+
 const Home = () => {
-    const chefs = useLoaderData();
+    const chefs = useLoaderData('');
+
     return (
         <>
             <Slider></Slider>

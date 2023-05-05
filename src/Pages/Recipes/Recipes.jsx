@@ -3,13 +3,13 @@ import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { FaCheckCircle, FaHeart } from 'react-icons/fa';
 import { useLoaderData } from 'react-router-dom';
 import RacipeCard from './RacipeCard';
+import LazyLoad from 'react-lazy-load';
+
 
 const Recipes = () => {
     const chef = useLoaderData();
-    console.log(chef);
 
     const { chefPicture, chefName, id, likes, numberOfRecipes, yearsOfExperience, bio } = chef;
-    console.log(likes)
 
     return (
         <div>
@@ -17,7 +17,9 @@ const Recipes = () => {
                 <Row>
                     <Col xs={12} >
                         <Card>
-                            <Card.Img variant="top" src={chefPicture} className='img-fluid' />
+                            <LazyLoad >
+                                <Card.Img variant="top" src={chefPicture} />
+                            </LazyLoad>
                             <Card.Body>
                                 <div>
                                     <Card.Title className='mb-2 pb-2 border-bottom fs-3 fw-bold'>{chefName}</Card.Title>
@@ -38,7 +40,7 @@ const Recipes = () => {
                     </Col>
                 </Row>
             </Container>
-            
+
             <RacipeCard id={id}> </RacipeCard>
         </div>
     );

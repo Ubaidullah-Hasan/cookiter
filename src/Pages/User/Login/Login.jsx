@@ -1,11 +1,17 @@
 import React, { useContext, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
 const Login = () => {
     const { loginByemail, createUserByGoogle, createUserByGitHub } = useContext(AuthContext);
     const [error, setError] = useState('');
+    // dynamic path set ( private route )
+    const location = useLocation();
+    console.log(location);
+    const navigate = useNavigate();
+    const runningPath = location.state?.form?.pathname || '/'; 
+
 
     const handleForm = (event) => {
         event.preventDefault();
@@ -18,6 +24,7 @@ const Login = () => {
                 form.reset();
                 console.log(result.user);
                 setError('');
+                navigate(runningPath);
             })
             .catch(err => {
                 setError(err.message);
@@ -29,7 +36,8 @@ const Login = () => {
         createUserByGoogle()
             .then(result => {
                 console.log(result.user);
-                setError('')
+                setError('');
+                navigate(runningPath);
             })
             .catch(error => {
                 setError(error.message);
@@ -41,12 +49,14 @@ const Login = () => {
         createUserByGitHub()
             .then(result => {
                 console.log(result.user);
-                setError('')
+                setError('');
+                navigate(runningPath);
             })
             .catch(error => {
                 setError(error.message);
             })
     }
+
     
     return (
         <Container>
